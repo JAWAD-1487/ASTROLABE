@@ -20,6 +20,7 @@ const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN ?? 'http://localhost:3000';
 
 app.set('trust proxy', 1);
 
+
 app.use(
   cors({
     origin: FRONTEND_ORIGIN,
@@ -27,7 +28,8 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: '30mb' }));
+app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cookieParser());
 
 // express-session — must come before passport.session()
