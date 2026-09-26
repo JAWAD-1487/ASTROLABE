@@ -37,7 +37,7 @@ Astrolabe/
 ### 1 — Clone and install
 
 ```bash
-git clone https://github.com/your-org/astrolabe.git
+git clone https://github.com/Jawad-1487/astrolabe.git
 cd Astrolabe
 npm install          # installs all workspace dependencies
 ```
@@ -64,9 +64,9 @@ Open `backend/.env` and fill in the required values (see table below).
 | `DATABASE_URL` | Postgres connection string — default matches docker-compose |
 | `PORT` | Backend port (default `3001`) |
 | `FRONTEND_ORIGIN` | Next.js dev origin — `http://localhost:3000` for local dev |
-| `GEMINI_KEY_FLASH` | API key for `gemini-2.5-flash` (primary model) |
-| `GEMINI_KEY_FLASH_LITE` | API key for `gemini-2.0-flash-lite` (first fallback) |
-| `GEMINI_KEY_FLASH_8B` | API key for `gemini-1.5-flash-8b` (second fallback) |
+| `GEMINI_KEY_FLASH` | API key for `gemini-3.6-flash` (primary model) |
+| `GEMINI_KEY_FLASH_LITE` | API key for `gemini-3.6-flash-lite` (first fallback) |
+| `GEMINI_KEY_FLASH_LITE2` | API key for `gemini-3.5-flash` (second fallback) |
 | `GITHUB_CLIENT_ID` | GitHub OAuth App client ID |
 | `GITHUB_CLIENT_SECRET` | GitHub OAuth App client secret |
 | `SESSION_SECRET` | Random string used to sign sessions |
@@ -80,7 +80,7 @@ cd backend
 npx prisma migrate dev
 ```
 
-### 5 — Configure the frontend (optional)
+### 5 — Configure the frontend (o-ptional)
 
 ```bash
 cd frontend

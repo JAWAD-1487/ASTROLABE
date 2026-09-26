@@ -116,14 +116,23 @@ function GraphCanvas({
     );
   }, [pulseMap, setNodes]);
 
+  // ── Context menu ───────────────────────────────────────────────────────────
+  const [contextMenu, setContextMenu] = useState<ContextMenu | null>(null);
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
   // ── Edge visibility ────────────────────────────────────────────────────────
   useEffect(() => {
-    if (!activeEdgeType) {
+    if (!activeEdgeType || !selectedNodeId) {
       setEdges([]);
       return;
     }
     const visible = allEdges.current
       .filter((e) => e.type === 'import') // all raw edges are 'import'
+      .filter((e) =>
+        activeEdgeType === 'import'
+          ? e.to === selectedNodeId   // files this node imports FROM
+          : e.from === selectedNodeId // files that import THIS node
+      )
       .map((e, i) => ({
         id: `e-${i}`,
         source: activeEdgeType === 'import' ? e.from : e.to,
@@ -131,11 +140,7 @@ function GraphCanvas({
         ...makeEdgeStyle(activeEdgeType),
       }));
     setEdges(visible);
-  }, [activeEdgeType, setEdges]);
-
-  // ── Context menu ───────────────────────────────────────────────────────────
-  const [contextMenu, setContextMenu] = useState<ContextMenu | null>(null);
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  }, [activeEdgeType, selectedNodeId, setEdges]);
 
   const onNodeClick: NodeMouseHandler = useCallback((event, node) => {
     event.stopPropagation();

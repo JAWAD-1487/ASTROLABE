@@ -5,7 +5,7 @@ import { GoogleGenAI, Type } from '@google/genai';
 const MODELS = [
   { name: 'gemini-3.6-flash',      apiKey: process.env.GEMINI_KEY_FLASH      ?? '' },
   { name: 'gemini-3.6-flash-lite', apiKey: process.env.GEMINI_KEY_FLASH_LITE ?? '' },
-  { name: 'gemini-3.5-flash-8b',   apiKey: process.env.GEMINI_KEY_FLASH_8B   ?? '' },
+  { name: 'gemini-3.5-flash-lite',   apiKey: process.env.GEMINI_KEY_FLASH_LITE2   ?? '' },
 ] as const;
 
 // ── Response schema ───────────────────────────────────────────────────────────
