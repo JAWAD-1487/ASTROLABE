@@ -65,7 +65,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 
-app.get('/health', (_req: Request, res: Response) => {
+app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
