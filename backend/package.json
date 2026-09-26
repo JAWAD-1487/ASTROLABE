@@ -1,0 +1,48 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push"
+  },
+  "dependencies": {
+    "@babel/parser": "^8.0.6",
+    "@babel/traverse": "^8.0.6",
+    "@babel/types": "^8.0.6",
+    "@google/genai": "^2.24.0",
+    "@octokit/rest": "^22.0.1",
+    "@prisma/client": "^5.14.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.19.0",
+    "glob": "^13.0.6",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "simple-git": "^4.0.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.19.0",
+    "@types/node": "^20.14.9",
+    "@types/passport": "^1.0.17",
+    "@types/passport-github2": "^1.2.9",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.4",
+    "prisma": "^5.14.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.5.2"
+  }
+}

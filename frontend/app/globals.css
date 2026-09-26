@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617;   /* slate-950 */
+  --foreground: #f1f5f9;   /* slate-100 */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ── React Flow dark overrides ─────────────────────────────────────────────── */
+.react-flow__controls button {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+  fill: #94a3b8 !important;
+}
+.react-flow__controls button:hover {
+  background: #334155 !important;
+}
+.react-flow__minimap {
+  background: #0f172a !important;
+}

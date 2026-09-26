@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RepositoryStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+model Repository {
+  id           String           @id @default(uuid())
+  sessionId    String
+  repoUrl      String
+  status       RepositoryStatus @default(PENDING)
+  errorMessage String?
+  createdAt    DateTime         @default(now())
+  files        File[]
+
+  @@index([sessionId])
+}
+
+model File {
+  id        String     @id @default(uuid())
+  repoId    String
+  repo      Repository @relation(fields: [repoId], references: [id], onDelete: Cascade)
+  path      String
+  lineCount Int
+  content   String
+  imports   Json       @default("[]")
+  exports   Json       @default("[]")
+
+  @@index([repoId])
+  @@index([repoId, path])
+}
