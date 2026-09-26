@@ -18,6 +18,8 @@ const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN ?? 'http://localhost:3000';
 
 // ── Middleware ────────────────────────────────────────────────────────────────
 
+app.set('trust proxy', 1);
+
 app.use(
   cors({
     origin: FRONTEND_ORIGIN,
