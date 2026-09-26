@@ -71,7 +71,7 @@ router.post('/evaluate', async (req: Request, res: Response) => {
   });
 
   const dependents = allFiles
-    .filter((f) => {
+    .filter((f: any) => {
       const imports = f.imports as string[];
       return imports.some((imp) => imp.replace(/\\/g, '/') === filePath.replace(/\\/g, '/'));
     })
@@ -79,7 +79,7 @@ router.post('/evaluate', async (req: Request, res: Response) => {
 
   // ── Extract call-site snippets from dependents ────────────────────────────
   const targetExports = targetFile.exports as string[];
-  const callSiteBlocks = dependents.map((dep) => {
+  const callSiteBlocks = dependents.map((dep: any) => {
     const sites = extractCallSites(dep.content, targetExports);
     const snippet = sites.length > 0
       ? sites.map((s) => `  [line ${s.lineNumber}] ${s.symbol}:\n${s.snippet}`).join('\n\n')

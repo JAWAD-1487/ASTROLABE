@@ -52,7 +52,7 @@ export async function calculateRiskIndex(
     new RegExp(`__tests__/${escapeRegex(targetBase)}`),
   ];
 
-  const hasTestCoverage = allFiles.some((f) => {
+  const hasTestCoverage = allFiles.some((f: any) => {
     const p = f.path.replace(/\\/g, '/');
     return testPatterns.some((re) => re.test(p));
   });
