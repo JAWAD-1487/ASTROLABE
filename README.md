@@ -67,8 +67,6 @@ Open `backend/.env` and fill in the required values (see table below).
 | `GEMINI_KEY_FLASH` | API key for `gemini-3.6-flash` (primary model) |
 | `GEMINI_KEY_FLASH_LITE` | API key for `gemini-3.6-flash-lite` (first fallback) |
 | `GEMINI_KEY_FLASH_LITE2` | API key for `gemini-3.5-flash` (second fallback) |
-| `GITHUB_CLIENT_ID` | GitHub OAuth App client ID |
-| `GITHUB_CLIENT_SECRET` | GitHub OAuth App client secret |
 | `SESSION_SECRET` | Random string used to sign sessions |
 
 Get free Gemini API keys at <https://aistudio.google.com/app/apikey>.
@@ -109,32 +107,6 @@ Open <http://localhost:3000> in your browser.
 
 ---
 
-## GitHub OAuth App Setup
-
-The "Create Branch / PR" feature requires a GitHub OAuth App. The app still works without it — users get a `.patch` file download instead.
-
-1. Go to **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**  
-   (or visit <https://github.com/settings/applications/new>)
-
-2. Fill in:
-
-   | Field | Value |
-   |-------|-------|
-   | Application name | Astrolabe (local) |
-   | Homepage URL | `http://localhost:3000` |
-   | Authorization callback URL | `http://localhost:3001/api/auth/github/callback` |
-
-3. Click **Register application**.
-
-4. Copy the **Client ID** and generate a **Client Secret**, then add them to `backend/.env`:
-
-   ```
-   GITHUB_CLIENT_ID=your_client_id
-   GITHUB_CLIENT_SECRET=your_client_secret
-   ```
-
----
-
 ## Full End-to-End Flow
 
 1. **Enter a public GitHub repo URL** on the landing page and click *Analyse Repository*.
@@ -158,7 +130,6 @@ backend/
 │   ├── routes/
 │   │   ├── repoRoutes.ts         # POST /api/repo/analyze, GET /api/repo/:id/status
 │   │   ├── impactRoutes.ts       # POST /api/impact/evaluate
-│   │   ├── authRoutes.ts         # GitHub OAuth flow
 │   │   └── patchRoutes.ts        # POST /api/patch/create-branch
 │   └── services/
 │       ├── gitService.ts         # Shallow clone / cleanup
@@ -180,7 +151,6 @@ frontend/
 ├── context/
 │   └── BlastWaveContext.tsx      # Shared blast-wave BFS state
 ├── hooks/
-│   └── useGitHubAuth.ts          # GitHub auth state hook
 └── types/
     └── graph.ts                  # Shared TypeScript types
 ```
@@ -195,12 +165,8 @@ frontend/
 | `GET`  | `/api/repo/:id/status` | Poll ingestion status |
 | `GET`  | `/api/repo/:id/file?path=` | Fetch file source content |
 | `POST` | `/api/impact/evaluate` | Gemini blast-radius analysis |
-| `GET`  | `/api/auth/github` | Initiate GitHub OAuth flow |
-| `GET`  | `/api/auth/github/callback` | OAuth callback |
-| `GET`  | `/api/auth/me` | Current user or `401` |
-| `GET`  | `/api/auth/logout` | Sign out |
 | `POST` | `/api/patch/create-branch` | Create branch + PR (auth required) |
-| `GET`  | `/health` | Backend health check |
+| `GET`  | `/api/health` | Backend health check |
 
 ---
 
