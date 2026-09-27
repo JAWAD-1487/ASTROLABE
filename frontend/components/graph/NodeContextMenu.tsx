@@ -42,14 +42,14 @@ export default function NodeContextMenu({
         className="w-full text-left px-4 py-2.5 text-sm text-green-400 hover:bg-slate-700 flex items-center gap-2"
       >
         <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
-        Show Exports
+        IT Imports
       </button>
       <button
         onClick={() => { onShowImports(); onClose(); }}
         className="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-slate-700 flex items-center gap-2"
       >
         <span className="w-2 h-2 rounded-full bg-red-400 inline-block" />
-        Show Imports
+        Imports IT
       </button>
       <div className="border-t border-slate-600" />
       <button
